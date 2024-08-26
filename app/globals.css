@@ -2,32 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  @apply bg-slate-800;
+  font-family: var(--font-body);
+}
+
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-weight: 400;
+    font-family: var(--font-title);
+  }
+  p,
+  label,
+  button {
+    font-family: var(--font-body);
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .font-title {
+    font-family: var(--font-title);
+  }
+  .absolute-center {
+    @apply absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%];
+  }
+  .absolute-h-center {
+    @apply absolute left-[50%] translate-x-[-50%];
+  }
+  .absolute-v-center {
+    @apply absolute top-[50%] translate-y-[-50%];
+  }
+}
+
+@layer components {
+  .spread-table {
+    @apply absolute top-0 left-0 w-full h-full opacity-50;
+    background-image: -webkit-radial-gradient(
+      center,
+      ellipse cover,
+      #888178 0%,
+      #463f3f 100%
+    );
+    box-shadow: inset 0 -30px 100px rgba(26, 26, 26, 0.6);
+  }
+  .spread-noise {
+    @apply absolute top-0 left-0 w-full h-full opacity-50 invert;
+    background-image: url("/images/noise.svg");
   }
 }
